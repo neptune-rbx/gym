@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Anthony's Fitness Hub</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #0d0d0d;
+      color: #ffffff;
+      padding: 40px;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 40px;
+      font-size: 2.5em;
+    }
+
+    .container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+    }
+
+    .card {
+      background-color: #1a1a1a;
+      border-radius: 16px;
+      padding: 20px;
+      text-align: center;
+      transition: transform 0.2s;
+      cursor: pointer;
+    }
+
+    .card:hover {
+      transform: scale(1.03);
+    }
+
+    .card img {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+      border-radius: 12px;
+      margin-bottom: 15px;
+      background-color: #333;
+    }
+
+    .category-title {
+      font-size: 1.5em;
+      margin-bottom: 10px;
+    }
+
+    .task-list {
+      display: none;
+      margin-top: 50px;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .task-list.active {
+      display: block;
+    }
+
+    .task-list h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .task-list ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .task-list li {
+      background: #1a1a1a;
+      padding: 15px 20px;
+      border-radius: 12px;
+      margin: 10px 0;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .exercise-title {
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+
+    .details {
+      font-size: 0.95em;
+      color: #ccc;
+    }
+
+    input[type="checkbox"] {
+      margin-right: 10px;
+      transform: scale(1.2);
+    }
+
+    .footer {
+      margin-top: 60px;
+      text-align: center;
+      font-size: 0.9em;
+      color: #888;
+    }
+
+        .timer-container {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background-color: #1a1a1a;
+    border: 2px solid #333;
+    border-radius: 12px;
+    padding: 15px 20px;
+    text-align: center;
+    z-index: 999;
+    box-shadow: 0 0 10px #000;
+    }
+
+    #restTimer {
+    font-size: 1.2em;
+    margin-top: 8px;
+    color: #0f0;
+    }
+
+    #startTimerBtn {
+    background-color: #333;
+    color: white;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 8px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    }
+
+    #startTimerBtn:hover {
+    background-color: #555;
+    }
+    #startTimerBtn:disabled {
+    background-color: #222;
+    color: #888;
+    cursor: not-allowed;
+    }
+
+  </style>
+</head>
+<body>
+
+  <h1>Anthony's Fitness Hub</h1>
+
+  <div class="container">
+    <div class="card" onclick="showList('upper')">
+      <img src="https://i.ibb.co/p6d1ctSj/sgfsdf.png" alt="Upper Body">
+      <div class="category-title">Upper</div>
+      <p>Biceps, Triceps, Shoulders, Chest</p>
+    </div>
+
+    <div class="card" onclick="showList('lowerCore')">
+      <img src="https://i.ibb.co/XZ4jQb4F/gfafsf.png" alt="Lower & Core">
+      <div class="category-title">Lower & Core</div>
+      <p>Abs, Lats, Quads, Calves, Core</p>
+    </div>
+
+    <div class="card" onclick="showList('everything')">
+      <img src="https://i.ibb.co/prWLvKTj/fafsf.png" alt="Everything">
+      <div class="category-title">Everything</div>
+      <p>Full Body Combo (Shortened)</p>
+    </div>
+  </div>
+
+  <!-- Upper Workout -->
+  <div class="task-list" id="upper">
+    <h2>Upper Body Workout</h2>
+    <ul>
+      <li><label><input type="checkbox"><div><div class="exercise-title">Chest Press</div><div class="details">Reps: 8–10 • Sets: 3</div></div></label></li>
+      <li><label><input type="checkbox"><div><div class="exercise-title">Tricep Press</div><div class="details">Reps: 8–10 • Sets: 3</div></div></label></li>
+      <li><label><input type="checkbox"><div><div class="exercise-title">Tricep Extensions</div><div class="details">Reps: 8–10 • Sets: 3</div></div></label></li>
+      <li><label><input type="checkbox"><div><div class="exercise-title">Pec Flies</div><div class="details">Reps: 8–10 • Sets: 3</div></div></label></li>
+      <li><label><input type="checkbox"><div><div class="exercise-title">Preacher Curls</div><div class="details">Reps: 6–8 • Sets: 3</div></div></label></li>
+      <li><label><input type="checkbox"><div><div class="exercise-title">Bench Press</div><div class="details">Reps: 6–8 • Sets: 3</div></div></label></li>
+      <li><label><input type="checkbox"><div><div class="exercise-title">Incline Bench Press</div><div class="details">Reps: 8–10 • Sets: 2</div></div></label></li>
+      <li><label><input type="checkbox"><div><div class="exercise-title">Shoulder Press</div><div class="details">Reps: 8–10 • Sets: 2</div></div></label></li>
+    </ul>
+  </div>
+
+  <!-- Lower & Core Workout -->
+  <div class="task-list" id="lowerCore">
+    <h2>Lower & Core Workout</h2>
+    <ul>
+      <li><label><input type="checkbox"><div><div class="exercise-title">Leg Press</div><div class="details">Reps: 8–10 • Sets: 3</div></div></label></li>
+      <li><label><input type="checkbox"><div><div class="exercise-title">Calf Raises</div><div class="details">Reps: 25–30 • Sets: 3</div></div></label></li>
+      <li><label><input type="checkbox"><div><div class="exercise-title">Assisted Pull-Up</div><div class="details">Reps: 8–10 • Sets: 3</div></div></label></li>
+      <li><label><input type="checkbox"><div><div class="exercise-title">Lat Pulldown</div><div class="details">Reps: 8–10 • Sets: 3</div></div></label></li>
+      <li><label><input type="checkbox"><div><div class="exercise-title">Torso Twist</div><div class="details">Reps: 6–8 • Sets: 3</div></div></label></li>
+      <li><label><input type="checkbox"><div><div class="exercise-title">Incline Sit-Ups</div><div class="details">Reps: 25 • Sets: 5</div></div></label></li>
+      <li><label><input type="checkbox"><div><div class="exercise-title">Rowing Machine</div><div class="details">Reps: 8–10 • Sets: 3</div></div></label></li>
+    </ul>
+  </div>
+
+  <!-- Full Body (Shortened) -->
+  <div class="task-list" id="everything">
+    <h2>Full Body (Shortened)</h2>
+    <ul>
+      <li><label><input type="checkbox"><div><div class="exercise-title">Chest Press</div><div class="details">Reps: 8 • Sets: 2</div></div></label></li>
+      <li><label><input type="checkbox"><div><div class="exercise-title">Leg Press</div><div class="details">Reps: 8 • Sets: 2</div></div></label></li>
+      <li><label><input type="checkbox"><div><div class="exercise-title">Shoulder Press</div><div class="details">Reps: 8 • Sets: 2</div></div></label></li>
+      <li><label><input type="checkbox"><div><div class="exercise-title">Lat Pulldown</div><div class="details">Reps: 8 • Sets: 2</div></div></label></li>
+      <li><label><input type="checkbox"><div><div class="exercise-title">Sit-Ups</div><div class="details">Reps: 20 • Sets: 3</div></div></label></li>
+      <li><label><input type="checkbox"><div><div class="exercise-title">Row Machine</div><div class="details">Reps: 8 • Sets: 2</div></div></label></li>
+      <li><label><input type="checkbox"><div><div class="exercise-title">Push-Ups</div><div class="details">Reps: 15 • Sets: 2</div></div></label></li>
+    </ul>
+  </div>
+
+  <div class="footer">
+    © 2025 Anthony’s Fitness Hub. All rights reserved.
+  </div>
+
+  <script>
+    function showList(id) {
+      document.querySelectorAll('.task-list').forEach(el => el.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
+      window.scrollTo({ top: document.getElementById(id).offsetTop - 20, behavior: 'smooth' });
+    }
+
+    function startRestTimer() {
+  let time = 120;
+  const timerDisplay = document.getElementById('restTimer');
+  const button = document.getElementById('startTimerBtn');
+
+  button.disabled = true;
+  timerDisplay.textContent = `Time Left: ${time}s`;
+
+  const interval = setInterval(() => {
+    time--;
+    timerDisplay.textContent = `Time Left: ${time}s`;
+
+    if (time <= 0) {
+      clearInterval(interval);
+      timerDisplay.textContent = "Rest complete!";
+      button.disabled = false;
+    }
+  }, 1000);
+}
+
+  </script>
+
+  <div class="timer-container">
+  <button id="startTimerBtn" onclick="startRestTimer()">Start Rest Timer</button>
+  <div id="restTimer">Ready</div>
+</div>
+
+
+</body>
+</html>
